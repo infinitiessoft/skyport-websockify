@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<ConnectorSet>
+	<Connector mode="local" protocol="HTTP/1.1" ip="127.0.0.1" username="admin" password="1111"
+		port="8085" path="/vnc/vnc_auto.html" SSLEnabled="true" keystoreType="PKCS12"
+		keystoreFile="config/skyport_keystore.p12" keystorePass="changeit" keystoreKeyPass="changeit"
+		minPort="10900" maxPort="11900" />
+</ConnectorSet>

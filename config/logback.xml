@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="30 seconds">
+
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<!-- encoders are assigned the type ch.qos.logback.classic.encoder.PatternLayoutEncoder 
+			by default -->
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+
+	<!--Daily rolling file appender -->
+	<appender name="FILE"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>log/server.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- daily rollover -->
+			<fileNamePattern>log/server.%d{yyyy-MM-dd}.log</fileNamePattern>
+			<!-- keep 7 days' worth of history -->
+			<maxHistory>7</maxHistory>
+		</rollingPolicy>
+
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} %-4relative [%thread] %-5level %logger{35}
+				- %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="FILE_CATALINA"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>log/catalina.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- daily rollover -->
+			<fileNamePattern>log/catalina.%d{yyyy-MM-dd}.log</fileNamePattern>
+			<!-- keep 7 days' worth of history -->
+			<maxHistory>7</maxHistory>
+		</rollingPolicy>
+
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} %-4relative [%thread] %-5level %logger{35}
+				- %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="FILE_LOCALHOST"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>log/localhost.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- daily rollover -->
+			<fileNamePattern>log/localhost.%d{yyyy-MM-dd}.log</fileNamePattern>
+			<!-- keep 7 days' worth of history -->
+			<maxHistory>7</maxHistory>
+		</rollingPolicy>
+
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} %-4relative [%thread] %-5level %logger{35}
+				- %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="FILE_MANAGER"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>log/manager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- daily rollover -->
+			<fileNamePattern>log/manager.%d{yyyy-MM-dd}.log</fileNamePattern>
+			<!-- keep 7 days' worth of history -->
+			<maxHistory>7</maxHistory>
+		</rollingPolicy>
+
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} %-4relative [%thread] %-5level %logger{35}
+				- %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="FILE_HOST_MANAGER"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>log/host-manager.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- daily rollover -->
+			<fileNamePattern>log/host-manager.%d{yyyy-MM-dd}.log
+			</fileNamePattern>
+			<!-- keep 7 days' worth of history -->
+			<maxHistory>7</maxHistory>
+		</rollingPolicy>
+
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} %-4relative [%thread] %-5level %logger{35}
+				- %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="ASYNC_CATALINA" class="ch.qos.logback.classic.AsyncAppender">
+		<appender-ref ref="FILE_CATALINA" />
+	</appender>
+
+	<appender name="ASYNC_LOCALHOST" class="ch.qos.logback.classic.AsyncAppender">
+		<appender-ref ref="FILE_LOCALHOST" />
+	</appender>
+
+	<appender name="ASYNC_MANAGER" class="ch.qos.logback.classic.AsyncAppender">
+		<appender-ref ref="FILE_MANAGER" />
+	</appender>
+
+	<appender name="ASYNC_HOST_MANAGER" class="ch.qos.logback.classic.AsyncAppender">
+		<appender-ref ref="FILE_HOST_MANAGER" />
+	</appender>
+
+	<appender name="ASYNC_FILE" class="ch.qos.logback.classic.AsyncAppender">
+		<appender-ref ref="FILE" />
+	</appender>
+
+	<appender name="ASYNC_CONSOLE" class="ch.qos.logback.classic.AsyncAppender">
+		<appender-ref ref="STDOUT" />
+	</appender>
+
+	<logger name="org.apache.catalina" level="debug" additivity="false">
+		<appender-ref ref="ASYNC_CATALINA" />
+		<appender-ref ref="ASYNC_CONSOLE" />
+	</logger>
+
+	<logger name="org.apache.catalina.core.ContainerBase.[Catalina].[localhost]"
+		level="debug" additivity="false">
+		<appender-ref ref="ASYNC_LOCALHOST" />
+		<appender-ref ref="ASYNC_CONSOLE" />
+	</logger>
+
+	<logger
+		name="org.apache.catalina.core.ContainerBase.[Catalina].[localhost].[/manager]"
+		level="debug" additivity="false">
+		<appender-ref ref="ASYNC_MANAGER" />
+		<appender-ref ref="ASYNC_CONSOLE" />
+	</logger>
+
+	<logger
+		name="org.apache.catalina.core.ContainerBase.[Catalina].[localhost].[/host-manager]"
+		level="debug" additivity="false">
+		<appender-ref ref="ASYNC_HOST_MANAGER" />
+		<appender-ref ref="ASYNC_CONSOLE" />
+	</logger>
+
+	<root level="debug" additivity="false">
+		<appender-ref ref="ASYNC_CONSOLE" />
+		<!-- <appender-ref ref="FILE" /> -->
+		<appender-ref ref="ASYNC_FILE" />
+	</root>
+
+
+</configuration>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+
+	<property name="max.retention.days" value="60" />
+
+	<appender name="CONSOLE2" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder class="ch.qos.logback.access.PatternLayoutEncoder">
+			<pattern>combined</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="ACCESS-LOG"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>log/localhost-access.log</file>
+		<append>true</append>
+		<encoder class="ch.qos.logback.access.PatternLayoutEncoder">
+			<charset>utf-8</charset>
+			<pattern>combined</pattern>
+		</encoder>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- daily rollover -->
+			<fileNamePattern>log/localhost-access.%d{yyyy-MM-dd}.log
+			</fileNamePattern>
+			<!-- keep 7 days' worth of history -->
+			<maxHistory>7</maxHistory>
+		</rollingPolicy>
+	</appender>
+
+	<appender-ref ref="CONSOLE2" />
+	<appender-ref ref="ACCESS-LOG" />
+
+</configuration>
