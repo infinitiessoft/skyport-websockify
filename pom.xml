@@ -13,6 +13,16 @@
 	<name>skyport-websockify</name>
 	<description>Websockify proxy for vnc</description>
 	<packaging>jar</packaging>
+	<organization>
+		<name>InfinitiesSoft, Inc.</name>
+		<url>http://www.infinitiessoft.com/</url>
+	</organization>
+	<licenses>
+		<license>
+			<name>Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0</url>
+		</license>
+	</licenses>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

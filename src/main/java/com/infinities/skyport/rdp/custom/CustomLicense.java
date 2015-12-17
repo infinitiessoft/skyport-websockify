@@ -5,7 +5,7 @@
  * Author: $Author: suvarov $
  * Date: $Date: 2007/03/08 00:26:26 $
  *
- * Copyright (c) 2005 Propero Limited
+ * Copyright 2005, 2015005 Propero Limited
  *
  * Purpose: Handles request, receipt and processing of
  *          licences
